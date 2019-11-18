@@ -30,13 +30,13 @@ def detect(request):
 
     img2vec = Img2Vec(cuda=True)
 
-    train_data = pd.read_csv('/home/akhilesh/bmc_api/xray_caption/train_images.tsv', sep="\t", header=None)
+    train_data = pd.read_csv('/home/akhilesh/bmc_api/image-captioning/xray_caption/train_images.tsv', sep="\t", header=None)
     train_data.columns = ["id", "caption"]
     train_images = dict(zip(train_data.id, train_data.caption))
 
     ids = [i+1 for i in range(len(train_data.id))]
 
-    raw = np.load("/home/akhilesh/bmc_api/xray_caption/raw_embeddings.npy")
+    raw = np.load("/home/akhilesh/bmc_api/image-captioning/xray_caption/raw_embeddings.npy")
 
     # check to see if this is a post request
     if request.method == "POST":

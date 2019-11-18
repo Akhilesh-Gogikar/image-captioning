@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 from xray_caption import views
+from xray_attention import views as views1
 
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^xray_caption/detect/$', views.detect, name='captioning'),
+    url(r'^xray_attention/predict/$', views1.predict, name='attention'),
     url(r'^admin/', admin.site.urls),
     # url(r'^$', 'cv_api.views.home', name='home'),
     # url(r'^blog/', include('blog.urls'))
