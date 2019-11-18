@@ -1,3 +1,12 @@
+If you want to recreate the conda environment which can run the current applications
+
+1. conda create --name myenv --file conda_env.txt
+
+IF you want to install the packages in the environment
+
+2.conda install --name myenv --file conda_env.txt
+
+
 This project deploys bio-medical image captioning using 1-Nearest Neighbour approach.
 
 The image embeddings are extracted using img2vec.
