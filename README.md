@@ -28,3 +28,15 @@ The endpoint accepts either a multipart form field named `image` or a form field
 ## Repository note
 
 This repository previously had both `README.md` and `Readme.MD`, which collide on case-insensitive filesystems. The project documentation now lives in `README.md` only.
+
+## Citation
+
+If you reference this repository in a project, paper, or demo write-up, cite the GitHub repository:
+
+```bibtex
+@software{gogikar_xray_image_captioning,
+  author = {Gogikar, Akhilesh},
+  title = {X-ray image captioning},
+  url = {https://github.com/Akhilesh-Gogikar/image-captioning}
+}
+```
