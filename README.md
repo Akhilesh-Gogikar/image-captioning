@@ -25,6 +25,23 @@ The endpoint accepts either a multipart form field named `image` or a form field
 {"success": true, "caption": "..."}
 ```
 
+## Bundled sample check
+
+Before wiring the historical Django environment, visitors can confirm the
+included sample set is present from the repository root:
+
+```bash
+python3 - <<'PY'
+from pathlib import Path
+samples = sorted(Path("test_images").glob("CXR*.png"))
+rows = Path("test_images/iu_xray.tsv").read_text().splitlines()
+assert len(samples) == 5, len(samples)
+assert len(rows) >= len(samples), len(rows)
+assert all(p.read_bytes().startswith(b"\x89PNG\r\n\x1a\n") for p in samples)
+print(f"{len(samples)} sample images and {len(rows)} TSV rows found")
+PY
+```
+
 ## Repository note
 
 This repository previously had both `README.md` and `Readme.MD`, which collide on case-insensitive filesystems. The project documentation now lives in `README.md` only.
