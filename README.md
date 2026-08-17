@@ -5,9 +5,17 @@ Django demo for comparing a submitted chest X-ray image against stored image emb
 ## What is included
 
 - `xray_caption/views.py`: `detect` endpoint that accepts an uploaded image or image URL, embeds it with `img2vec`, compares it with `raw_embeddings.npy`, and returns JSON with the nearest caption.
-- `bmc_api/urls.py`: routes `POST /xray_caption/detect/` to the caption endpoint.
-- `test_images/`: sample CXR images plus the TSV used by the test harness.
+- `xray_attention/views.py`: `predict` endpoint that runs the InceptionV3 + GRU attention captioning path and returns both caption tokens and attention weights.
+- `bmc_api/urls.py`: routes `POST /xray_caption/detect/` and `POST /xray_attention/predict/` to the two caption endpoints.
+- `test_images/`: sample CXR images plus the TSV and script used by the attention-output test harness.
 - `conda_env.txt` and `requirements.txt`: historical Python environment references.
+
+## Endpoint map
+
+| Route | Implementation | Required bundled assets | Response fields |
+| --- | --- | --- | --- |
+| `POST /xray_caption/detect/` | Nearest-neighbor caption lookup over stored embeddings | `xray_caption/train_images.tsv`, `xray_caption/raw_embeddings.npy` | `success`, `caption` |
+| `POST /xray_attention/predict/` | InceptionV3 feature extractor plus GRU attention decoder | `xray_attention/checkpoints/train/`, `xray_attention/tokenizer_a.pkl` | `success`, `caption`, `attentions` |
 
 ## Local orientation
 
